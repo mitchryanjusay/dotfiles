@@ -328,39 +328,43 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " DevIcons
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1                     " Enables directory icons
 let g:DevIconsEnableFoldersOpenClose = 1                            " Enables opening/closing of directory icons
-let g:DevIconsEnableFolderExtensionPatternMatching = 0              " Enable pattern matching on directories
+let g:DevIconsEnableFolderExtensionPatternMatching = 1              " Enable pattern matching glyphs on directory extensions
+let g:DevIconsEnableFolderPatterMatching = 1                        " Enable pattern matching glyphs on folder/directory
+let g:WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1         " Enable custom folder/directory glyph exact matching
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1                        " Single width glyphs
 let g:webdevicons_conceal_nerdtree_brackets = 1                     " Hide NERDTree brackets around flags
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1                   " Force align icons
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol="\uE5FF"   " Sets default folder icon
+let g:DevIconsDefaultFolderOpenSymbol="\uE5FE"                      " Sets default open folder icon
 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jar'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['aar'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['apk'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['7z'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rar'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['zip'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jks'] = '' 
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['keystore'] = '' 
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pro'] = '' 
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['otf'] = ''   
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ttf'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['wav'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['mp3'] = ''     
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xml'] = '' 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jar'] = "\uF487"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['aar'] = "\uF487"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['apk'] = "\uE70E"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['7z'] = "\uF1C6"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rar'] = "\uF1C6"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['zip'] = "\uF1C6"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jks'] = "\uF43D" 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['keystore'] = "\uF43D" 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pro'] = "\uF132" 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['otf'] = "\uF031"   
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ttf'] = "\uF031"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['wav'] = "\uF001"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['mp3'] = "\uF001"     
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = "\uF405"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xml'] = "\uF121" 
 
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['AndroidManifest.xml'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['gradle.properties'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['build.gradle'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['local.properties'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['settings.gradle'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['project.properties'] = ''   
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ''   
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['AndroidManifest.xml'] = "\uE70E"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['gradle.properties'] = "\uE608"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['build.gradle'] = "\uE608"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['local.properties'] = "\uE608"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['settings.gradle'] = "\uE60d"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['project.properties'] = "\uE7C4"   
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = "\uE702"   
 
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\/$'] = ''   
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\/$'] = "\uE70E"   
 
 " change the default dictionary mappings for file extension matches
 " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
@@ -429,6 +433,12 @@ let g:NERDTreeExactMatchHighlightColor['AndroidManifest.xml'] = s:green
 " 
 " let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
 " let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color files ending with _spec.rb
+
+" IdentLine
+let g:indentLine_enabled=1                                          " Enables indent line plugin
+let g:indentLine_char="┆"                                           " Sets indent line character
+let g:indentLine_first_char="│"                                     " Set first level indent character
+let g:indentLine_showFirstIndentLevel=1                             " Enables first level indent
 
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
