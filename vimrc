@@ -95,7 +95,7 @@ set softtabstop=4               									" Let backspace delete indent
 
 
 set conceallevel=0 													" Shows text normally without hiding any concealed text
-set virtualedit=all 												" Allows block selection to be not limited to end of lines
+set virtualedit=block                                               " Allows visual block selection to be not limited to end of lines
 set wildmenu														" Command-line completion using <TAB>
 set wildmode=list:longest,full										" Complete the first match then use original text for the next matches
 set laststatus=2													" Always show a status line
@@ -113,6 +113,7 @@ set hlsearch          												" Highlight searcj hits, nohlsearch to turn of
 set backspace=2														" More powerful backspacing
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1									" Enable true color on NVIm
 set t_Co=256														" Sets Terminal Colors to 256
+
 if has('gui_running')
     set lines=60 columns=108
     if has('gui_win32')
@@ -311,7 +312,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree D:/wrk | endif
 
 " Closes VIm if NERDTree is the only window left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q! | endif
 
 " function! NERDTreeHighlightFile(extension,fg,bg,guifg,guibg)
 " exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -335,6 +336,15 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1                   " Force alig
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol="\uE5FF"   " Sets default folder icon
 let g:DevIconsDefaultFolderOpenSymbol="\uE5FE"                      " Sets default open folder icon
 
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['AndroidManifest.xml'] = "\uE70E"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['gradle.properties'] = "\uE608"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['build.gradle'] = "\uE608"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['local.properties'] = "\uE608"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['settings.gradle'] = "\uE608"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['project.properties'] = "\uE7C4"   
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = "\uE702"   
+
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jar'] = "\uF487"
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['aar'] = "\uF487"
@@ -352,17 +362,9 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['mp3'] = "\uF001"
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = "\uF405"
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['xml'] = "\uF121" 
 
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['AndroidManifest.xml'] = "\uE70E"
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['gradle.properties'] = "\uE608"
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['build.gradle'] = "\uE608"
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['local.properties'] = "\uE608"
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['settings.gradle'] = "\uE60d"
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['project.properties'] = "\uE7C4"   
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = "\uE702"   
-
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\/$'] = "\uE70E"   
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['AndroidManifest.xml$'] = "\uE70E"   
+" let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*libs.*$'] = \uF1B3   
 
 " change the default dictionary mappings for file extension matches
 " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
@@ -382,22 +384,30 @@ let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\/$'] = "\uE70E"
 " let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*jquery.*\.js$'] = 'ƛ'
 
 "NERDTree Syntax Highlight
-let s:base03='002B36'
-let s:base02='073642'
-let s:base01='586E75'
-let s:base00='657B83'
-let s:base0='839496'
-let s:base1='93A1A1'
-let s:base2='EEE8D5'
-let s:base3='FDF6E3'
-let s:yellow='B58900'
-let s:orange='CB4B16'
-let s:red='DC322F'
-let s:magenta='D33682'
-let s:violet='6C71C4'
-let s:blue='268BD2'
-let s:cyan='2AA198'
-let s:green='859900'
+let s:base03="002B36"
+let s:base02="073642"
+let s:base01="586E75"
+let s:base00="657B83"
+let s:base0="839496"
+let s:base1="93A1A1"
+let s:base2="EEE8D5"
+let s:base3="FDF6E3"
+let s:yellow="B58900"
+let s:orange="CB4B16"
+let s:red="DC322F"
+let s:magenta="D33682"
+let s:violet="6C71C4"
+let s:blue="268BD2"
+let s:cyan="2AA198"
+let s:green="859900"
+
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['AndroidManifest.xml'] = s:green 
+let g:NERDTreeExactMatchHighlightColor['gradle.properties'] = s:green 
+let g:NERDTreeExactMatchHighlightColor['build.gradle'] = s:green 
+let g:NERDTreeExactMatchHighlightColor['local.properties'] = s:green 
+let g:NERDTreeExactMatchHighlightColor['settings.gradle'] = s:green 
+let g:NERDTreeExactMatchHighlightColor['project.properties'] = s:green 
 
 let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['jar'] = s:yellow
@@ -405,29 +415,27 @@ let g:NERDTreeExtensionHighlightColor['aar'] = s:yellow
 let g:NERDTreeExtensionHighlightColor['zip'] = s:orange
 let g:NERDTreeExtensionHighlightColor['7z'] = s:orange
 let g:NERDTreeExtensionHighlightColor['rar'] = s:orange  
-let g:NERDTreeExtensionHighlightColor['jks'] = s:base00
-let g:NERDTreeExtensionHighlightColor['keystore'] = s:base00
-let g:NERDTreeExtensionHighlightColor['pro'] = s:base00
-let g:NERDTreeExtensionHighlightColor['otf'] = s:base00
-let g:NERDTreeExtensionHighlightColor['ttf'] = s:base00
-let g:NERDTreeExtensionHighlightColor['wav'] = s:base00
-let g:NERDTreeExtensionHighlightColor['mp3'] = s:base00
-let g:NERDTreeExtensionHighlightColor['png'] = s:base00
-let g:NERDTreeExtensionHighlightColor['log'] = s:base01
+let g:NERDTreeExtensionHighlightColor['jks'] = s:violet
+let g:NERDTreeExtensionHighlightColor['keystore'] = s:violet
+" let g:NERDTreeExtensionHighlightColor['pro'] = s:base02
+" let g:NERDTreeExtensionHighlightColor['otf'] = s:base02
+" let g:NERDTreeExtensionHighlightColor['ttf'] = s:base02
+" let g:NERDTreeExtensionHighlightColor['wav'] = s:base02
+" let g:NERDTreeExtensionHighlightColor['mp3'] = s:base02
+" let g:NERDTreeExtensionHighlightColor['log'] = s:magenta
 let g:NERDTreeExtensionHighlightColor['java'] = s:base3
 let g:NERDTreeExtensionHighlightColor['xml'] = s:blue
 let g:NERDTreeExtensionHighlightColor['json'] = s:cyan
-let g:NERDTreeExtensionHighlightColor['gradle'] = s:violet
-let g:NERDTreeExtensionHighlightColor['properties'] = s:violet
-
-let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeExactMatchHighlightColor['AndroidManifest.xml'] = s:green 
+let g:NERDTreeExtensionHighlightColor['js'] = s:cyan
+let g:NERDTreeExtensionHighlightColor['gradle'] = s:green
+let g:NERDTreeExtensionHighlightColor['apk'] = s:green
+let g:NERDTreeExtensionHighlightColor['properties'] = s:green
 
 " let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
 " let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets the color of css files to blue
 " 
-" let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
-" let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
+" let g:nerdtreeexactmatchhighlightcolor = {} " this line is needed to avoid error
+" let g:nerdtreeexactmatchhighlightcolor['.gitignore'] = s:git_orange " sets the color for .gitignore files
 " 
 " let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
 " let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color files ending with _spec.rb
