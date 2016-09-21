@@ -15,14 +15,10 @@ call system(expand("!mkdir -p $HOME/.vimundo"))
 set runtimepath+=$HOME/.vim/repos/github.com/Shougo/dein.vim/
 
 call dein#begin("$HOME/.vim")
-let pluginsExist = 0
 
 call dein#add('Shougo/dein.vim')                 					" Let NeoBundle manage itself
 
 " Visuals
-" call dein#add('frankier/neovim-colors-solarized-truecolor-only')	" Solarized Colorscheme for True Color GUI
-call dein#add('powerline/fonts')									" Powerline fonts for Airline
-call dein#add('altercation/vim-colors-solarized')                   " Solarized Colorscheme for Terminals
 call dein#add('ryanoasis/vim-devicons')							    " Adds filetype icons to NERDTree and Airline
 call dein#add('vim-airline/vim-airline')				            " Airline Custom Status Bar
 call dein#add('vim-airline/vim-airline-themes')					    " Airline Themes
@@ -70,8 +66,10 @@ call dein#add('Xuyuanp/nerdtree-git-plugin')          				" NERDTree GIT Visuali
 " call dein#add('mattn/webapi-vim')						       		" Interface to Web APIs
 
 if dein#check_install()
-  call dein#install()
+  call dein#install()  
+    let pluginsExist=1
 endif
+
 call dein#end()
 
 
@@ -116,11 +114,11 @@ set backspace=2														" More powerful backspacing
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1									" Enable true color on NVIm
 set t_Co=256														" Sets Terminal Colors to 256
 if has('gui_running')
-    set lines = 60 columns=108
+    set lines=60 columns=108
     if has('gui_win32')
-        set guifont=Inconsolata\ NF\ g:h12:cDEFAULT
+        set guifont=Inconsolata\ NF:h12:cDEFAULT
     else
-        set guifont=Inconsolata\ NF \g \12
+        set guifont=Inconsolata\ NF \12
     endif
 endif
 
@@ -220,7 +218,7 @@ nmap <leader>5 <Plug>AirlineSelectTab5
 nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>9 <Plug>iArlineSelectTab9
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
 
@@ -310,7 +308,7 @@ let g:NERDTreeAutoDeleteBuffer=1                                    " Auto delet
 
 " Runs NERDTree on startup
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree D:/wrk | endif
 
 " Closes VIm if NERDTree is the only window left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -443,11 +441,12 @@ let g:indentLine_showFirstIndentLevel=1                             " Enables fi
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 
-let g:delimitMate_expand_cr = 2 									" Expands on <CR> puts end match one line below active cursor line
-let g:delimitMate_expand_space = 1									" Expands on <Space> puts space after and before the opening and closing delimiter puts cursor in middle
-let g:delimitMate_jumpexpansion = 0									" Jumps expansions
-let g:delimitMate_smart_quotes = 1									" Haven't figured it out
-let g:delimitMate_balance_matchpairs = 1 							" Balance matching pairs
+" DelimitMate
+let g:delimitMate_expand_cr=1                                       " Enable expansion on <CR> 
+let g:delimitMate_expand_space=1                                    " Enable expansion on <Space>
+let g:delimitMate_jump_expansion=1                                  " Enables jumping over <CR> and <Space> expansions when inserting closing pair
+let g:delimitMate_balance_matchpairs=1                              " Enables pair balancing
+au FileType java,javascript let b:delimitMate_eol_marker=";"        " Inserts character on the end of the closing match pair 
 
 " let g:tagbar_ctags_bin="D:/app/CTags/ctags.exe"
 
