@@ -115,12 +115,17 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1									" Enable true color on NVIm
 set t_Co=256														" Sets Terminal Colors to 256
 
 if has('gui_running')
-    set lines=60 columns=108
     if has('gui_win32')
+        set lines=999 columns=999
         set guifont=Inconsolata\ NF:h12:cDEFAULT
+    elseif has('nvim')
+        let g:GuiWindowMaximized=1
     else
+        set lines=999 columns=999
         set guifont=Inconsolata\ NF \12
     endif
+elseif exists('g:Gui')
+    let g:GuiWindowMaximized=1
 endif
 
 colorscheme solarized 												" Set colorscheme to solarized
@@ -181,7 +186,7 @@ map <C-K> <C-W>k<C-W>_|												" Easier moving left in splits and windows
 map <C-s> :w!<CR>|													" Maps CTRL+s to force save
 map <M-q><q> :close|                                                " Maps ALT+q+q to close file
 map <C-\> :NERDTreeToggle<CR>|										" Opens/Closes NERDTree
-map <F8> :TagbarToggle<CR>	|										" Maps F8 to open tagbar
+map <F8> :TagbarToggle<CR>|										    " Maps F8 to open tagbar
 
 nnoremap ; :|														" ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
 nnoremap <ESC> :noh<RETURN><ESC>|									" Clears the last search highlight by hitting esc
