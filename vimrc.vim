@@ -19,6 +19,11 @@ call dein#begin("$HOME/.vim")
 call dein#add('Shougo/dein.vim')                 					" Let NeoBundle manage itself
 
 " Visuals
+if has('has_gui')
+    call dein#add('arakashic/nvim-colors-solarized')                " True Color Solarized for NVim
+else
+    call dein#add('altercation/vim-colors-solarized')               " Terminal Color Solarized for VIm
+endif
 call dein#add('ryanoasis/vim-devicons')							    " Adds filetype icons to NERDTree and Airline
 call dein#add('vim-airline/vim-airline')				            " Airline Custom Status Bar
 call dein#add('vim-airline/vim-airline-themes')					    " Airline Themes
@@ -39,10 +44,11 @@ call dein#add('godlygeek/tabular')									" Text alignment
 call dein#add('Shougo/neosnippet.vim')								" Snippet handler
 call dein#add('Shougo/neosnippet-snippets')							" Pre-made Snippets
 call dein#add('honza/vim-snippets')									" Pre-made Snippets
-call dein#add('Shougo/neocomplete.vim')				       			" Code completion
-call dein#add('Shougo/neoinclude.vim')			    				" Include completion framework for neocomplete/deoplete
-call dein#add('ujihisa/neco-look')					       			" Completion for the English Language
-call dein#add('Shougo/neco-vim', {'on_ft': 'vim'})    				" Auto completion for .vim files
+if has('nvim')
+    call dein#add('Shougo/deoplete.nvim')			       			" NVim code completion
+else 
+    call dein#add('Shougo/neocomplete.vim')                         " Vim code completion
+endif
 call dein#add('valloric/MatchTagAlways')					        " Highlight closing tags of markup languages
 
 " General Functionalities
@@ -57,6 +63,12 @@ call dein#add('ervandew/supertab')									" Use tab for all completions
 call dein#add('Shougo/unite.vim')									" Fuzzy searching
 call dein#add('Shougo/unite-outline')								" File outline view
 call dein#add('junkblocker/unite-codesearch')						" Adds code searching to unite
+
+" Language Support
+call dein#add('Shougo/neoinclude.vim')			    				" Include completion framework for neocomplete/deoplete
+call dein#add('ujihisa/neco-look')					       			" Completion for the English Language
+call dein#add('Shougo/neco-vim', {'on_ft': 'vim'})    				" Auto completion for .vim files
+call dein#add('artur-shaik/vim-javacomplete2', {'on_ft': 'java'})   " Auto completeion for .java files
 
 " Versioning
 call dein#add('tpope/vim-fugitive')					    			" GIT Wrapper
@@ -171,12 +183,8 @@ autocmd BufReadPost *
 autocmd BufRead * normal zz
 
 " Remove trailing whitespaces and \^M chars
-autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\\\s\\\\+$","","")'))
-
-
-
-
-
+autocmd FileType java,js,xml,vim,json,gradle,properties autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\\\s\\\\+$","","")'))
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
 " Mappings
 map <C-J> <C-W>j<C-W>_|												" Easier moving down in splits and windows
 map <C-K> <C-W>k<C-W>_| 											" Easier moving up in splits and windows
@@ -451,6 +459,17 @@ let g:indentLine_char="┆"                                           " Sets ind
 let g:indentLine_first_char="│"                                     " Set first level indent character
 let g:indentLine_showFirstIndentLevel=1                             " Enables first level indent
 
+" Neocomplete / Deoplete
+if has('nvim')
+   let g:deoplete#enable_at_startup=1                               " Enables deoplete on startup
+   let g:deoplete#enable_ignore_case=1                              " Ignores upper/lower-case when looking for candidate completion
+"   let g:deoplete#enable_smart_case=1                               " When capital letter is included in input will not ignore the upper/lower-case
+"   let g:deoplete#enable_camel_case=1                               " Enables camel case sensitivity
+   let g:deoplete#enable_refresh_always=1                           " Deoplete refreshes candidates automatically
+   let g:deoplete#auto_complete_start_length=0                      " Sets autocompletion to start only at 0 characters
+   let g:deoplete#max_list=1000                                     " Sets maximum amount of match to 1000 to ensure all match are listed
+else
+endif
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 
