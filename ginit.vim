@@ -1,4 +1,4 @@
 if !exists(g:GuiLoaded)
-	Guifont Inconsolata\ NF:h12
+	Guifont InconsolataGo\ Nerd\ Font:h14
 	set encoding=utf-8
 endif

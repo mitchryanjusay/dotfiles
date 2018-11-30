@@ -129,12 +129,12 @@ set t_Co=256														" Sets Terminal Colors to 256
 if has('gui_running')
     if has('gui_win32')
         set lines=999 columns=999
-        set guifont=Inconsolata\ NF:h12:cDEFAULT
+        set guifont=InconsolataGo\ Nerd\ Font:h14:cDEFAULT
     elseif has('nvim')
         let g:GuiWindowMaximized=1
     else
         set lines=999 columns=999
-        set guifont=Inconsolata\ NF \12
+        set guifont=InconsolataGo\ Nerd\ Font \14
     endif
 elseif exists('g:Gui')
     let g:GuiWindowMaximized=1
@@ -322,7 +322,7 @@ let g:NERDTreeAutoDeleteBuffer=1                                    " Auto delet
 
 " Runs NERDTree on startup
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree D:/wrk | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree $HOME/Work/wrk | endif
 
 " Closes VIm if NERDTree is the only window left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q! | endif

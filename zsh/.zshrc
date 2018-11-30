@@ -1,7 +1,13 @@
-if [ "$(uname> /dev/null)" != "Linux" ]; then
-    export ZSH="/Users/mitchjusay/.oh-my-zsh"
-else 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    isLinux=true
+else
+    isLinux=false
+fi;
+
+if $isLinux ; then
     export ZSH="/home/mitchryanjusay/.oh-my-zsh"
+else 
+    export ZSH="/Users/mitchjusay/.oh-my-zsh"
 fi;
 
 if [ ! -d $HOME/.antigen ]; then
@@ -12,11 +18,11 @@ fi;
 
 source $HOME/.antigen/antigen.zsh
 
-# Load the oh-my-zsh's library.
+#Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
-# Bundles from the default repo
-if [ "$(uname> /dev/null)" != "Linux" ]; then
+#Bundles from the default repo
+if $isLinux ; then
     antigen bundle archlinux
 else 
     antigen bundle brew
@@ -31,23 +37,23 @@ antigen bundle gitignore
 antigen bundle github
 antigen bundle gradle
 antigen bundle pip
-# antigen bundle tmux
-# antigen bundle tmuxinator
+antigen bundle tmux
+antigen bundle tmuxinator
 antigen bundle vi-mode
 
-# Bundles from other repo
+#Bundles from other repo
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 
-# This bitch bundle has to be the last bundle
+#This bitch bundle has to be the last bundle
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-# Install theme
+#Install theme
 antigen theme bhilburn/powerlevel9k powerlevel9k
 
-# Finalize
+#Finalize
 antigen apply
-
+ 
 clear
 
 # If you come from bash you might have to change your $PATH.
@@ -139,7 +145,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-if [ "$(uname> /dev/null)" != "Linux" ]; then
+if $isLinux ; then
     plugins=(
         archlinux
         compleat
@@ -151,6 +157,8 @@ if [ "$(uname> /dev/null)" != "Linux" ]; then
         github
         gradle
         pip
+        tmux
+        tmuxinator
         vi-mode
         zsh-autosuggestions
         zsh-syntax-highlighting
@@ -168,6 +176,8 @@ else
         github
         gradle
         pip
+        tmux
+        tmuxinator
         vi-mode
         zsh-autosuggestions
         zsh-syntax-highlighting
@@ -175,6 +185,7 @@ else
 fi;
 
 # Setting custom commands
+alias zsh-update='upgrade_oh_my_zsh & antigen selfupdate & antigen update'
 alias clr-sg='echo ""> ~/.zsh_history & exec $SHELL -l'
 
 # Load existing commands previously placed in bash profile
