@@ -1,6 +1,6 @@
 body.dark-theme {
   --tab-background-normal: 	hsl(192, 100%, 11%);
-  --tab-background-pinned: hsl(18, 80%, 44%);
+  --tab-background-pinned: hsl(192, 81%, 14%);
   --tab-background-active: hsl(192, 81%, 14%);
   --tab-background-hover: hsl(192, 81%, 14%);
   --tab-border-color: hsl(196, 13%, 45%);
