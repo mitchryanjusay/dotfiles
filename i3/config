@@ -72,7 +72,7 @@ set $c_green            #859900
 ############################################
 
 bindsym $mod+Return exec i3-sensible-terminal       # Start a terminal
-bindsym $mod+q kill                                 # Kill focused window
+bindsym $mod+Shift+q kill                           # Kill focused window
 bindsym $mod+f fullscreen toggle                    # Enter fullscreen mode for the focused container
 bindsym $mod+p focus parent                         # Focus the parent container
 bindsym $mod+c focus child                          # Focus the child container
@@ -120,7 +120,7 @@ bindsym $alt+Right move right
 #           Mouse Bindings             #
 ########################################
 
-floating_modifier $mod:                         # use Mouse+$mod to drag floating windows to their wanted position
+# floating_modifier $mod                          # use Mouse+$mod to drag floating windows to their wanted position
 bindsym --release button2 kill                  # The middle button over the titlebar kills the window
 bindsym --whole-window $mod+Shift+button2 kill  # The middle button and a modifier over any part of the window kills the window
 
@@ -205,8 +205,8 @@ exec synclient MaxTapTime=0         # Prevent touchpad tapping
 focus_follows_mouse no              # Stops focus from following mouse
 default_orientation vertical        # Sets the default orientation when opening windows to vertical
 new_window 1pixel                   # Removes title and border
-default_border pixel 0              # Removes borders and title bars
-default_floating_border pixel 0     # Removes floating window borders
+default_border pixel 0px            # Removes borders and title bars
+default_floating_border pixel 0px   # Removes floating window borders
 hide_edge_borders both              # Hides container borders
 title_align center                  # Sets the titles to center of the window
 
