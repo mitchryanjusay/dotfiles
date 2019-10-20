@@ -1,0 +1,427 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;violet
+;   The README contains a lot of information
+;
+;==========================================================
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+
+[settings]
+screenchange-reload = true
+
+
+[colors]
+base03 = #002B36
+base02 = #073642
+base01 = #586E75
+base00 = #657B83
+base0 = #839496
+base1 = #93A1A1
+base2 = #EEE8D5
+base3 = #FDF6E3
+yellow = #B58900
+orange = #CB4B16
+red = #DC322F
+magenta = #D33682
+violet = #6C71C4
+blue = #268BD2
+cyan = #2AA198
+green = #859900
+
+
+[bar/bar]
+monitor = ${env:MONITOR:}
+font-0 = InconsolataGo Nerd Font Mono:pixelsize=14;3.5
+
+override-redirect = false
+bottom = false
+width = 100%
+height = 20
+offset-x = 0
+offset-y = 0
+
+background = ${colors.base03}
+foreground = ${colors.base0}
+
+border-bottom-size = 1
+border-bottom-color = ${colors.base02}
+
+spacing = 0
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+
+modules-left = i3 arrow-right xwindow
+modules-center = 
+# modules-right = cpu-arrow-left cpu memory-arrow-left memory network-arrow-left network volume-arrow-left volume battery-arrow-left battery date-arrow-left date rofi-arrow-left rofi
+modules-right = volume-arrow-left volume battery-arrow-left battery date-arrow-left date rofi-arrow-left rofi
+
+fixed-center = false
+
+tray-position = right
+tray-padding = 4
+tray-maxsize = 26
+tray-background = ${colors.base3}
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[bar/subbar]
+monitor = ${env:MONITOR:}
+font-0 = InconsolataGo Nerd Font Mono:pixelsize=14;3.5
+
+override-redirect = false
+bottom = false
+width = 100%
+height = 20
+offset-x = 0
+offset-y = 0
+
+background = ${colors.base03}
+foreground = ${colors.base0}
+
+border-bottom-size = 1
+border-bottom-color = ${colors.base02}
+
+spacing = 0
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+
+modules-left = i3 arrow-right xwindow
+modules-center = 
+modules-right = 
+
+fixed-center = false
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[module/i3]
+type = internal/i3
+format = <label-mode><label-state>
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+pin-workspaces = true
+
+strip-wsnumbers = true
+
+label-focused = %icon%
+label-focused-foreground = ${colors.cyan}
+label-focused-background = ${colors.base02}
+label-focused-padding = 1
+
+label-unfocused = %icon%
+label-unfocused-foreground = ${colors.base00}
+label-unfocused-background = ${colors.base02}
+label-unfocused-padding = 1
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.orange}
+label-urgent-background = ${colors.base02}
+label-urgent-padding = 1
+
+label-visible = %icon%
+label-visible-foreground = ${colors.base00}
+label-visible-background = ${colors.base02}
+label-visible-padding = 1
+
+ws-icon-0 = 1:Internet;
+ws-icon-1 = 2:Android;
+ws-icon-2 = 3:Terminal;
+ws-icon-3 = 4:Phone;
+ws-icon-4 = 5:Media;ﱘ
+ws-icon-5 = 6:Chat;
+ws-icon-6 = 7:Office;龎
+ws-icon-7 = 8:Files;
+ws-icon-8 = 9:System;
+ws-icon-9 = 10:Misc;ﳁ
+
+label-mode = %mode% %{R}%{T4}%{T-}
+label-mode-padding = 1
+label-mode-background = ${colors.magenta}
+label-mode-foreground = ${colors.base02}
+
+
+[module/arrow-right]
+type = custom/text
+content = "%{T4} %{T-}"
+content-foreground = ${colors.base02}
+content-background = ${colors.base03}
+
+
+[module/xwindow]
+type = internal/xwindow
+
+format-foreground = ${colors.base3}
+format-padding = 0
+
+label = "%{T2}%title%%{T-}"
+label-maxlen = 40
+
+
+[module/mpd]
+type = internal/mpd
+
+port = 6642
+
+format-online = 契 <label-song> <icon-prev><icon-stop><toggle><icon-next>
+;format-online = 契 <label-song>
+format-offline = Not Playing
+label-song-maxlen = 30
+label-song-ellipsis = true
+
+icon-prev = 玲
+icon-seekb = 丹
+icon-stop = 栗
+icon-play = 喇
+icon-pause = 
+icon-next = 怜
+icon-seekf = 
+
+icon-random = 
+icon-repeat = 凌
+
+toggle-on-foreground = ${colors.viole}
+toggle-on-background = ${colors.violet}
+toggle-off-foreground = ${colors.base03}
+toggle-off-background = ${colors.violet}
+
+format-offline-foreground = ${colors.base03}
+format-offline-background = ${colors.violet}
+
+format-online-foreground = ${colors.base03}
+format-online-background = ${colors.violet}
+
+format-offline-padding = 1
+format-online-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+label = ﬙ %percentage%%
+
+label-padding = 1
+
+label-foreground = ${colors.base03}
+label-background = ${colors.orange}
+
+[module/memory]
+type = internal/memory
+interval = 1
+label =  %percentage_used%%
+
+label-padding = 1
+
+label-foreground = ${colors.base03}
+label-background = ${colors.yellow}
+
+[module/network]
+type = internal/network
+interface = wlp3s0
+
+unknown-as-up = true
+
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
+label-connected = 直 %essid%
+label-connected-foreground = ${colors.base03}
+label-connected-background = ${colors.blue}
+
+label-disconnected = 睊 Unavailable
+label-disconnected-foreground = ${colors.base03}
+label-disconnected-background = ${colors.blue}
+
+label-connected-padding = 1
+label-disconnected-padding = 1
+
+[module/volume]
+type = internal/volume
+mapping = true
+master-mixer = Master
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+
+format-volume = <label-volume>
+
+label-volume = 墳 %percentage%%
+label-volume-foreground = ${colors.base03}
+label-volume-background = ${colors.blue}
+
+label-muted = 婢 Muted
+label-muted-foreground = ${colors.base03}
+label-muted-background = ${colors.blue}
+
+label-volume-padding = 1
+label-muted-padding = 1
+
+[module/date]
+type = internal/date
+; date =  %I:%M %p
+;date-alt =  %Y-%m-%d   %I:%M %p
+date = %I:%M %p   %m/%d/%Y  
+interval = 1
+
+label-foreground = ${colors.base03}
+label-background = ${colors.base3}
+label-padding   =  1
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 99
+
+format-charging = <animation-charging><label-charging>
+format-discharging = <ramp-capacity><label-discharging>
+format-full = <label-full>
+
+label-full =  %percentage%%
+label-charging = %percentage%%
+label-discharging = %percentage%%
+
+ramp-capacity-0 =  
+ramp-capacity-1 =  
+ramp-capacity-2 =  
+ramp-capacity-3 =  
+ramp-capacity-4 =  
+ramp-capacity-5 =  
+ramp-capacity-6 =  
+ramp-capacity-7 =  
+ramp-capacity-8 =  
+ramp-capacity-9 =  
+ramp-capacity-10 = 
+
+animation-charging-0 =  
+animation-charging-1 =  
+animation-charging-2 =  
+animation-charging-3 =  
+animation-charging-4 =  
+animation-charging-5 =  
+animation-charging-6 =  
+animation-charging-framerate = 350
+
+label-full-foreground = ${colors.base03}
+label-full-background = ${colors.green}
+label-charging-foreground = ${colors.base03}
+label-charging-background = ${colors.green}
+animation-charging-foreground = ${colors.base03}
+animation-charging-background = ${colors.green}
+label-discharging-foreground = ${colors.base03}
+label-discharging-background = ${colors.green}
+ramp-capacity-foreground = ${colors.base03}
+ramp-capacity-background = ${colors.green}
+
+; width messes up for some reason, so here's a dirty workaround
+format-full-prefix            = |
+format-full-prefix-background = ${colors.green}
+format-full-prefix-foreground = ${colors.green}
+format-full-suffix            = |
+format-full-suffix-background = ${colors.green}
+format-full-suffix-foreground = ${colors.green}
+
+format-charging-prefix            = |
+format-charging-prefix-background = ${colors.green}
+format-charging-prefix-foreground = ${colors.green}
+format-charging-suffix            = |
+format-charging-suffix-background= ${colors.green}
+format-charging-suffix-foreground = ${colors.green}
+
+format-discharging-prefix            = |
+format-discharging-prefix-background = ${colors.green}
+format-discharging-prefix-foreground = ${colors.green}
+format-discharging-suffix            = |
+format-discharging-suffix-background = ${colors.green}
+format-discharging-suffix-foreground = ${colors.green}
+
+label-full-padding = 0
+label-charging-padding = 0
+label-discharging-padding = 0
+ramp-capacity-padding = 1
+animation-charging-padding = 1
+
+[module/rofi]
+type = custom/script
+
+exec = echo ""
+click-right= echo "" | i3-dmenu-desktop --dmenu="rofi -dmenu -i -hide-scrollbar -location 3 -yoffset 43 -xoffset -16" &
+click-left= echo "" | rofi -show run -hide-scrollbar -location 3 -yoffset 43 -xoffset -16 &
+
+label-background = ${colors.base3}
+label-foreground = ${colors.base03}
+
+label-padding = 1
+
+[module/mpd-arrow-left]
+type = custom/text
+content = "%{T4}%{T-}"
+content-foreground = ${colors.violet}
+content-background = ${colors.base03}
+
+[module/cpu-arrow-left]
+type = custom/text
+content = "%{T4}%{T-}"
+content-foreground = ${colors.orange}
+content-background = ${colors.base03}
+
+[module/memory-arrow-left]
+type = custom/text
+content = "%{T4}%{T-}"
+content-foreground = ${colors.yellow}
+content-background = ${colors.orange}
+
+[module/network-arrow-left]
+type = custom/text
+content = "%{T4}%{T-}"
+content-foreground = ${colors.blue}
+content-background = ${colors.yellow}
+
+[module/volume-arrow-left]
+type = custom/text
+content = "%{T4}%{T-}"
+content-foreground = ${colors.blue}
+content-background = ${colors.base03}
+
+[module/battery-arrow-left]
+type = custom/text
+content = "%{T4}%{T-}"
+content-foreground = ${colors.green}
+content-background = ${colors.blue}
+
+[module/date-arrow-left]
+type = custom/text
+content = "%{T4}%{T-}"
+content-foreground = ${colors.base3}
+content-background = ${colors.green}
+
+[module/rofi-arrow-left]
+type = custom/text
+content = "%{T4}%{T-}"
+content-foreground = ${colors.base03}
+content-background = ${colors.base3}
+
+
+
+; vim:ft=dosini
+

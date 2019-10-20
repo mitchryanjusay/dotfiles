@@ -1,0 +1,522 @@
+# i3 config file (v4)
+
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+# Use pactl to adjust volume in PulseAudio.
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+################################
+#          Variables           #
+################################
+
+#Set super key as the mod key
+set $mod                Mod4 
+set $alt                Mod1
+
+# Font
+set $font_name          pango:InconsolataGo Nerd Font
+set $font_size_sm       8px
+set $font_size_rg       12px
+set $font_size_lg       16px
+
+# Vim movement
+set $up                 k 
+set $down               j
+set $left               h
+set $right              l
+
+# Workspaces
+set $ws1                "1:Internet"
+set $ws2                "2:Android"
+set $ws3                "3:Terminal"
+set $ws4                "4:Phone"
+set $ws5                "5:Media"
+set $ws6                "6:Chat"
+set $ws7                "7:Office"
+set $ws8                "8:Files"
+set $ws9                "9:System"
+set $ws10               "10:Misc"
+
+
+# Colors
+set $c_base03           #002B36
+set $c_base02           #073642
+set $c_base01           #586E75
+set $c_base00           #657B83
+set $c_base0            #839496
+set $c_base1            #93A1A1
+set $c_base2            #EEE8D5
+set $c_base3            #FDF6E3
+set $c_yellow           #B58900
+set $c_orange           #CB4B16
+set $c_red              #DC322F
+set $c_magenta          #D33682
+set $c_violet           #6C71C4
+set $c_blue             #267BD2
+set $c_cyan             #2AA198
+set $c_green            #859900
+
+###########################################
+#           Workspace Settings            #
+###########################################
+
+# Workspace 1 - Internet
+assign [class="firefox"] $ws1
+for_window [class="firefox"] focus
+assign [class="thunderbird"] $ws1
+for_window [class="thunderbird"] focus
+assign [class="Deluge"] $ws1
+for_window [class="Deluge"] focus
+assign [class="Uget-gtk"] $ws1
+for_window [class="Uget-gtk"] focus
+assign [class="Google-chrome"] $ws1
+for_window [class="Google-chrome"] focus
+
+# Workspace 2 - Android
+assign [class="Neovim"] $ws2
+for_window [class="Neovim"] focus
+assign [class="vim"] $ws2
+for_window [class="vim"] focus
+assign [class="jetbrains-studio"] $ws2
+for_window [class="jetbrains-studio"] focus
+assign [class="code-oss"] $ws2
+for_window [class="code-oss"] focus
+assign [class="Atom"] $ws2
+for_window [class="Atom"] focus
+
+# Workspace 3 - Terminal
+assign [class="Gnome-terminal"] $ws3
+for_window [class="Gnome-terminal"] focus
+assign [class="SmartGit"] $ws3
+for_window [class="SmartGit"] focus
+
+# Workspace 4 - Phone
+assign [class="Vysor"] $ws4
+for_window [class="Vysor"] focus
+
+# Workspace 5 - Media
+assign [class="Spotify"] $ws5
+for_window [class="Spotify"] focus
+assign [class="Rythmbox"] $ws5
+for_window [class="Rythmbox"] focus
+assign [class="Gnome-music"] $ws5
+for_window [class="Gnome-music"] focus
+assign [class="vlc"] $ws5
+for_window [class="vlc"] focus
+
+# Workspace 6 - Chat
+assign [class="Skype"] $ws6
+for_window [class="Skype"] focus
+
+# Workspace 7 - Office
+assign [class="libreoffice-startcenter"] $ws7
+for_window [class="libreoffice-startcenter"] focus
+assign [class="libreoffice-writer"] $ws7
+for_window [class="libreoffice-writer"] focus
+assign [class="libreoffice-impress"] $ws7
+for_window [class="libreoffice-impress"] focus
+assign [class="libreoffice-calc"] $ws7
+for_window [class="libreoffice-calc"] focus
+assign [class="libreoffice-draw"] $ws7
+for_window [class="libreoffice-draw"] focus
+assign [class="libreoffice-math"] $ws7
+for_window [class="libreoffice-math"] focus
+assign [class="Darktable"] $ws7
+for_window [class="Darktable"] focus
+assign [class="Gimp-2.10"] $ws7
+for_window [class="Gimp-2.10"] focus
+assign [class="Evince"] $ws7
+for_window [class="Evince"] focus
+assign [class="Org.gnome.Documents"] $ws7
+for_window [class="Org.gnome.Documents"] focus
+assign [class="Org.gnome.SoundRecorder"] $ws7
+for_window [class="Org.gnome.SoundRecorder"] focus
+
+# Workspace 8 - Files
+assign [class="Org.gnome.Nautilus"] $ws8
+for_window [class="Org.gnome.Nautilus"] focus
+assign [class="Org.gnome.Photos"] $ws8
+for_window [class="Org.gnome.Photos"] focus
+assign [class="okular"] $ws8
+for_window [class="okular"] focus
+assign [class="Gthumb"] $ws8
+for_window [class="Gthumb"] focus
+
+# Workspace 9 - System
+assign [class="Gnome-system-monitor"] $ws9
+for_window [class="Gnome-system-monitor"] focus
+assign [class="Pamac-manager"] $ws9
+for_window [class="Pamac-manager"] focus
+assign [class="Gnome-software"] $ws9
+for_window [class="Gnome-software"] focus
+assign [class="Boabab"] $ws9
+for_window [class="Boabab"] focus
+assign [class="Gnome-disks"] $ws9
+for_window [class="Gnome-disks"] focus
+assign [class="gnome-disk-utility"] $ws9
+for_window [class="gnome-disk-utility"] focus
+assign [class="Gnome-font-viewer"] $ws9
+for_window [class="Gnome-font-viewer"] focus
+assign [class="Bleachbit"] $ws9
+for_window [class="Bleachbit"] focus
+
+# Workspace 10 - Misc
+assign [class="gnome-calculator"] $w10
+for_window [class="gnome-calculator"] focus
+assign [class="wine"] $w10
+for_window [class="wine"] focus
+
+############################################
+#          Normal Mode Bindings            #
+############################################
+
+# Start a terminal
+bindsym $mod+Return exec i3-sensible-terminal                   
+
+# Kill focused window
+bindsym $mod+q kill                                             
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle                                
+
+# Focus the parent container
+bindsym $mod+p focus parent                                     
+
+# Focus the child container
+bindsym $mod+c focus child                                      
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad                        
+
+# Show/hide next scratchpad window or cycle through
+bindsym $mod+minus scratchpad show                             
+
+# Reload the configuration file
+bindsym $mod+r reload                                           
+
+# Restart i3 inplace
+bindsym $mod+Shift+r restart                                    
+
+# Split in horizontal orientation
+bindsym $mod+b split h; exec notify-send 'Tiling vertically'    
+
+# Split in vertical orientation
+bindsym $mod+v split v; exec notify-send 'Tiling horizontally'      
+
+# Toggle tiling / floating
+bindsym $mod+space floating toggle                              
+
+
+# Sets random wallpaper located in ~/.i3/res/ 
+bindsym $mod+w exec --no-startup-id ~/.i3/scripts/set-wallpaper.sh
+
+# Exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Switch to workspace
+bindsym $alt+1 workspace $ws1
+bindsym $alt+2 workspace $ws2
+bindsym $alt+3 workspace $ws3
+bindsym $alt+4 workspace $ws4
+bindsym $alt+5 workspace $ws5
+bindsym $alt+6 workspace $ws6
+bindsym $alt+7 workspace $ws7
+bindsym $alt+8 workspace $ws8
+bindsym $alt+9 workspace $ws9
+bindsym $alt+0 workspace $ws10
+    
+# Move focused window
+bindsym $alt+$left move left
+bindsym $alt+$down move down
+bindsym $alt+$up move up
+bindsym $alt+$right move right
+bindsym $alt+Left move left
+bindsym $alt+Down move down
+bindsym $alt+Up move up
+bindsym $alt+Right move right
+
+
+# move focused container to workspace
+bindsym Ctrl+Shift+1 move container to workspace $ws1
+bindsym Ctrl+Shift+2 move container to workspace $ws2
+bindsym Ctrl+Shift+3 move container to workspace $ws3
+bindsym Ctrl+Shift+4 move container to workspace $ws4
+bindsym Ctrl+Shift+5 move container to workspace $ws5
+bindsym Ctrl+Shift+6 move container to workspace $ws6
+bindsym Ctrl+Shift+7 move container to workspace $ws7
+bindsym Ctrl+Shift+8 move container to workspace $ws8
+bindsym Ctrl+Shift+9 move container to workspace $ws9
+bindsym Ctrl+Shift+0 move container to workspace $ws10
+
+
+# Easy workspace navigation
+bindsym Ctrl+$right workspace next
+bindsym Ctrl+$left workspace prev
+bindsym Ctrl+Right workspace next
+bindsym Ctrl+Left workspace prev
+bindsym $mod+Tab workspace back_and_forth
+
+########################################
+#           Mouse Bindings             #
+########################################
+
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod                          
+
+# The middle button over the titlebar kills the window
+bindsym --release button2 kill                  
+
+# The middle button and a modifier over any part of the window kills the window
+bindsym --whole-window $mod+Shift+button2 kill  
+
+###############################################
+#          Movement Mode Bindings             #
+###############################################
+
+mode "Move" {
+    # Move focused window
+    bindsym $left move left
+    bindsym $down move down
+    bindsym $up move up
+    bindsym $right move right
+    bindsym Left move left
+    bindsym Down move down
+    bindsym Up move up
+    bindsym Right move right
+
+    # Move focused container to workspace
+    bindsym 1 move container to workspace $ws1
+    bindsym 2 move container to workspace $ws2
+    bindsym 3 move container to workspace $ws3
+    bindsym 4 move container to workspace $ws4
+    bindsym 5 move container to workspace $ws5
+    bindsym 6 move container to workspace $ws6
+    bindsym 7 move container to workspace $ws7
+    bindsym 8 move container to workspace $ws8
+    bindsym 9 move container to workspace $ws9
+    bindsym 0 move container to workspace $ws10
+
+    # Back to normal mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+m mode "default"
+}
+
+bindsym $mod+m mode "Move"
+
+###########################################
+#          Edit Mode Bindings             #
+###########################################
+
+mode "Edit" {
+   
+
+    # Change container layout (stacked, tabbed, toggle split)
+    bindsym s layout stacking
+    bindsym w layout tabbed
+    bindsym e layout toggle split
+
+    # Resize in focus window
+    bindsym $left       resize shrink width 10 px or 10 ppt
+    bindsym $down       resize grow height 10 px or 10 ppt
+    bindsym $up         resize shrink height 10 px or 10 ppt
+    bindsym $right      resize grow width 10 px or 10 ppt
+    bindsym Left        resize shrink width 10 px or 10 ppt
+    bindsym Down        resize grow height 10 px or 10 ppt
+    bindsym Up          resize shrink height 10 px or 10 ppt
+    bindsym Right       resize grow width 10 px or 10 ppt
+    
+    # Change focus between tiling / floating windows
+    bindsym Shift+space focus mode_toggle    
+    
+    # Back to normal mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+e mode "default"
+}
+
+bindsym $mod+e mode "Edit"
+
+###########################################
+#           Gaps Mode Bindings            #
+###########################################
+
+# Adjust gaps on the fly
+set $"Gaps" Gaps: (O)uter, (I)nner
+set $"Outer Gaps" Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $"Inner Gaps" Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+
+mode "Gaps" {
+    bindsym o      mode "Outer Gaps"
+    bindsym i      mode "Inner Gaps"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+g mode "default"
+}
+
+mode "Inner Gaps" {
+    bindsym plus  gaps inner current plus 1
+    bindsym minus gaps inner current minus 1
+    bindsym 0     gaps inner current set 0
+
+    bindsym Shift+plus  gaps inner all plus 1
+    bindsym Shift+minus gaps inner all minus 1
+    bindsym Shift+0 gaps inner all set 0
+    
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+g mode "default"
+}
+mode "Outer Gaps" {
+    bindsym plus  gaps outer current plus 1
+    bindsym minus gaps outer current minus 1
+    bindsym 0 gaps outer current set 0
+
+    bindsym Shift+plus  gaps outer all plus 1
+    bindsym Shift+minus gaps outer all minus 1
+    bindsym Shift+0 gaps outer all set 0
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+g mode "default"
+}
+
+bindsym $mod+g mode "Gaps"
+
+###########################
+#          Misc           #
+###########################
+
+# Setting inner gap
+gaps inner 10
+
+# Setting out gap
+gaps outer 0
+
+# Setting font
+font $font_name $font_size_rg
+
+# Prevent touchpad tapping
+exec synclient MaxTapTime=0         
+
+# Stops focus from following mouse
+focus_follows_mouse no             
+
+# Sets the default orientation when opening windows to horizontal
+default_orientation horizontal
+
+# Sets new window border
+new_window pixel 5
+
+# Sets new floating window border
+new_float pixel 5
+
+# Hides container borders
+# hide_edge_borders both             
+
+# Sets the titles to center of the window
+title_align center                  
+
+# Sets default border 
+default_border pixel 5           
+
+# Sets default floating window border 
+default_floating_border pixel 5  
+
+#########################################
+#           Settings Colors             #
+#########################################
+
+# Class                     Border      Background  Text        Indicator   Child_Border
+client.focused              $c_cyan     $c_cyan     $c_base3    $c_green    $c_cyan
+client.focused_inactive     $c_base0    $c_base0    $c_base2    $c_green    $c_base0
+client.unfocused            $c_base01   $c_base01   $c_base2    $c_green    $c_base01
+client.urgent               $c_orange   $c_orange   $c_base3    $c_green    $c_orange
+client.placeholder          $c_green    $c_green    $c_base3    $c_green    $c_green
+client.background           $c_base03
+
+#########################################
+#           Startup Settings            #
+#########################################           
+
+# Initialize displays, sound device, wallpaper, and polybar
+# Commented out polybar launch for the mean time to test lemonbar
+exec_always --no-startup-id ~/.i3/scripts/init.sh &
+
+# display-daemon: when the HDMI display is connected, the laptop display will be turned off.
+# likewise, when the HDMI display is disconnected, the laptop display will be turned back on.
+# this also sets the audio device accordingly, and applies the wallpaper in the correct resolution.
+# credit to gurkensalat - https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration.1.html
+exec --no-startup-id ~/.i3/scripts/display-daemon.sh &
+
+# Launches lemonbar
+# exec-always --no-startup-id python /usr/lib/python3.7/site-packages/powerline/bindings/lemonbar/powerline-lemonbar.py --i3 --height=22 --interval=2 &
+
+# bar {
+#    status_command python /usr/lib/python3.7/site-packages/powerline/bindings/i3/powerline-i3.py 
+#    font $font_name $font_size_rg
+# }
+
+# Binds configurations
+exec --no-startup-id xrdb -merge ~/.Xresources &
+
+# Initializes keyring
+exec --no-startup-id gnome-keyring-daemon &
+
+# Hides mouse when not needed
+exec --no-startup-id unclutter --timeout 3 -b &
+
+# Binds additional shortcut keys
+exec --no-startup-id xbindkeys -p &
+
+# Compositor for Xorg
+exec --no-startup-id compton -b &
+
+# Notifications
+exec --no-startup-id twmnd &
+
+# Network manager applet
+exec --no-startup-id nm-applet &
+
+# Music player daemon
+exec --no-startup-id mpd &
+
+# Removable Disk applet
+exec --no-startup-id udiskie -Nt2 &
+
+# Bluetooth applet
+exec --no-startup-id blueberry-tray &
+
+# Clipboard manager
+exec --no-startup-id greenclip daemon &
+
+# Prevent auto sleep on fullscreen
+exec --no-startup-id caffeine -a &
+
+# Only if running i3-gnome
+# Restore GNOME's settings
+# exec --no-startup-id /usr/libexec/gnome-settings-daemon-localeexec &
+
+# Fix a bug in gnome-settings-daemon: http://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
+# exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/active false &

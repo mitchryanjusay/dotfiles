@@ -1,0 +1,16 @@
+package android-sdk
+package archlinux
+package autojump
+package bass
+package brew
+package fzf
+package fzf-autojump
+package gh
+package git-flow
+package git-refresh
+package https://github.com/jhillyerd/plugin-git
+package https://github.com/mitchryanjusay/plugin-tmux
+package neovim
+package osx
+theme bobthefish
+theme default

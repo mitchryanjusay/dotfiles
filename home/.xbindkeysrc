@@ -1,0 +1,90 @@
+#########################################
+#           MULTIMEDIA KEYS             #
+#########################################
+
+# Increase volume
+"~/.i3/scripts/volume.sh up"
+    XF86AudioRaiseVolume
+"~/.i3/scripts/volume.sh up"
+    m:0x10 + c:225
+
+# Decrease volume
+"~/.i3/scripts/volume.sh down"
+    XF86AudioLowerVolume
+"~/.i3/scripts/volume.sh down"
+    m:0x10 + c:180
+
+# Toggle mute
+"~/.i3/scripts/volume.sh mute"
+    XF86AudioMute
+"~/.i3/scripts/volume.sh mute"
+    m:0x10 + c:163
+
+# Play/Pause
+"playerctl play-pause"
+    XF86AudioPlay
+
+# Next song
+"playerctl next"
+    XF86AudioNext
+
+# Previous song
+"playerctl previous"
+    XF86AudioPrev
+
+# Increase brightness
+"light -A 5"
+    XF86MonBrightnessUp
+"light -A 10"
+    Control+Shift + equal
+
+# Decrease brightness
+"light -U 5"
+    XF86MonBrightnessDown
+"light -U 10"
+    Control+Shift + minus
+
+#############################
+#           ROFI            #
+#############################
+
+#### commented lines for centering with padding when fullscreen >> uncomment related lines in rofi config
+
+#### "rofi -show run -padding $(($(xwininfo -root |awk '/Height/ { print $2}')/3))"
+"rofi -show run -hide-scrollbar"
+    Control + r
+
+#### "i3-dmenu-desktop --dmenu="rofi -dmenu -i -padding $(($(xwininfo -root |awk '/Height/ { print $2}')/3))""
+"i3-dmenu-desktop --dmenu="rofi -dmenu -i -hide-scrollbar""
+    Control + space
+
+"~/.i3/scripts/i3lock.sh"
+    Control + Shift + l
+
+"~/.i3/scripts/logout.sh"
+    Mod4 + Escape
+
+# Clipboard manager
+#### "rofi -modi "clipboard:/usr/bin/greenclip print" -show clipboard -padding $(($(xwininfo -root |awk '/Height/ { print $2}')/3))"
+"rofi -modi "clipboard:/usr/bin/greenclip print" -show clipboard -width 75 -hide-scrollbar"
+    Mod4 + v
+
+# Window switcher
+#### "rofi -show window -padding $(($(xwininfo -root |awk '/Height/ { print $2}')/3))"
+"rofi -show window -width 50 -hide-scrollbar"
+    Alt + Tab
+
+###########################
+#           MISC          #
+###########################
+
+
+# Reload `xbindkeys` (after editing this file)
+"xbindkeys -p"
+    Control+Shift + x
+
+# Toggle displays (Turns on or off laptop output)
+"~/.i3/scripts/toggle-display.sh"
+    Control+Shift + backslash
+
+
